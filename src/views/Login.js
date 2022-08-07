@@ -1,5 +1,7 @@
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 // Styled components
-import { useState } from "react";
 import styled from "styled-components";
 
 // API
@@ -15,15 +17,17 @@ function Login() {
     const [isError, setError] = useState(false);
     const [email, setEmail] = useState('');
 
+    const navigate = useNavigate();
+    const location = useLocation();
+
     async function login() {
-        console.log('masuk')
         try {
             const result = await loginUser(email);
-            console.log(result.data.result)
             if (result) {
-                localStorage.setItem('email', result.data.result.email)
+                localStorage.setItem('email', result.data.result.email);
                 setError(false);
-                alert('Successfully login!')
+                navigate('/home');
+                window.location.reload();
             }
         } catch (error) {
             if (error.response.data === 'Email Address is not exists') {
@@ -32,6 +36,14 @@ function Login() {
             return alert('Internal server error')
         }
     }
+
+    useEffect(() => {
+        if (localStorage.getItem('email')) {
+            return navigate('/home')
+        }  else {
+            return null
+        }
+    }, [location])
 
     return (
         <ContentContainer
@@ -56,7 +68,7 @@ function Login() {
                             </LoginErrorMessage>
                         )
                     }
-                    <LoginButton onClick={login}>
+                    <LoginButton onClick={login} onKeyDown={login}>
                         Sign In
                     </LoginButton>
                 </LoginContainer>
