@@ -1,6 +1,5 @@
-import { Box, Card, CardContent, CardMedia } from "@mui/material";
+import { Box, Card, CardMedia } from "@mui/material";
 import styled from "styled-components";
-import { LazyLoadImage } from 'react-lazy-load-image-component';
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 
@@ -10,7 +9,8 @@ function CardGift({
     point = 'point here',
     type = 'type here',
     imageSrc = "https://mui.com/static/images/cards/contemplative-reptile.jpg",
-    key
+    key,
+    ...props
 }) {
 
     const location = useLocation();
@@ -25,8 +25,9 @@ function CardGift({
             setLoading(false);
         }, 1000)
     }, [location])
+
     return (
-        <Box sx={{ minWidth: 275, margin: '1em' }} key={key}>
+        <Box sx={{ minWidth: 275, margin: '1em' }} key={key} {...props}>
             <Card>
                 <CardTypeContainer>
                     <CardType>
@@ -102,5 +103,6 @@ const CardPoint = styled.div`
 const CardTextContainer = styled.div`
     display: flex;
     justify-content: flex-start;
+    font-weight: 600;
 `
 

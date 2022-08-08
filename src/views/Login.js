@@ -43,7 +43,7 @@ function Login() {
         }  else {
             return null
         }
-    }, [location])
+    }, [location, navigate])
 
     return (
         <ContentContainer
@@ -81,6 +81,7 @@ export default Login;
 
 const LoginContainer = styled.div`
     margin: 4em 0 4em;
+    padding: 0 2.5em;
     display: flex;
     flex-direction: column;
     align-items: center;

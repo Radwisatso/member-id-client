@@ -22,5 +22,4 @@ const InnerContainer = styled.div`
     width: 100%;
     min-height: 650px;
     max-width: 500px;
-    padding: 0 2.5em;
 `
