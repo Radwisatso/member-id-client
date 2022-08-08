@@ -38,7 +38,7 @@
   }
 }
 
-.bm-burger-button {
+.menu-button {
   position: fixed;
   width: 36px;
   height: 25px;
@@ -46,40 +46,79 @@
   margin-top: 1em;
 }
 
-.bm-overlay {
+.menu-overlay {
   width: 100%;
 }
 
-.bm-burger-bars {
+.menu-bar {
   background: black;
   border-radius: 100px;
   max-height: 2px;
 }
 
-.bm-cross-button {
+.menu-cross-button {
   height: 24px;
   width: 24px;
 }
 
-.bm-cross {
+.menu-cross {
   display: none;
   background: black;
 }
 
-.bm-menu {
+.menu {
   background: white;
   text-align: left;
   padding: 2.5em 0 0 3.5em;
   font-size: 1em;
-}
-
-.bm-menu-wrap {
   width: 100% !important;
   max-width: 260px;
-
 }
 
-.bm-menu a {
+.menu a {
+  margin-bottom: 30px;
+  text-decoration: none;
+}
+
+.filter-button {
+  position: fixed;
+  display: flex;
+  width: 36px;
+  height: 25px;
+  margin-left: -3em;
+  margin-top: 1em;
+  align-items: center;
+}
+
+.filter-overlay {
+  width: 100%;
+}
+
+.filter-bar {
+  background: black;
+  border-radius: 100px;
+  max-height: 2px;
+}
+
+.filter-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.filter-cross {
+  display: block;
+  background: black;
+}
+
+.filter {
+  position: fixed;
+  text-align: left;
+  width: 100% !important;
+  background: white;
+  padding: 2.5em 1.5em 1.5em;
+}
+
+.filter a {
   margin-bottom: 30px;
   text-decoration: none;
 }
@@ -96,5 +135,5 @@
     padding: 0;
     overflow-x: hidden;
   }
-  
+
 }

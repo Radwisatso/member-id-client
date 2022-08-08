@@ -18,15 +18,21 @@ import Header from "../components/Header";
 
 function Home() {
 
-    const [data, setData] = useState(null);
-    const [types, setTypes] = useState(null);
+    const [data, setData] = useState([]);
+    const [types, setTypes] = useState([]);
     const [initialPoint, setInitialPoint] = useState(0);
 
     const { pathname } = useLocation();
 
-    useEffect(() => {
-        console.log(pathname)
-    }, [pathname])
+    // Handle filter
+    async function submitFilter() {
+        try {
+            const result = await getAllAwards(types, initialPoint);
+            setData(result.data);
+        } catch (error) {
+            console.log(error)
+        }
+    }
 
     // AOS animation - pagination loading
     useEffect(() => {
@@ -34,38 +40,58 @@ function Home() {
         AOS.refresh();
     }, []);
 
+    // Fetch data after login
     useEffect(() => {
         async function getData() {
             try {
                 const result = await getAllAwards(types, initialPoint);
-                console.log(result.data)
                 setData(result.data);
             } catch (error) {
                 console.log(error)
             }
         }
         getData();
-    }, [pathname, types, initialPoint])
+    }, [pathname])
+
     return (
         <ContentContainer
             content={
                 <>
-                    <Header />
+                    <Header
+                        data={data}
+                        types={types}
+                        handleTypes={setTypes}
+                        initialPoint={initialPoint}
+                        handleInitialPoint={setInitialPoint}
+                        handleSubmit={submitFilter}
+                    />
                     <HomeContainer>
                         {
-                            data?.map(value => {
-                                return (
-                                    <CardGift
-                                        data-aos="fade-zoom-in"
-                                        data-aos-once
-                                        key={value.id}
-                                        title={value.name}
-                                        point={value.point}
-                                        type={value.type}
-                                        imageSrc={value.image}
+                            data.length > 0 ?
+                                data?.map(value => {
+                                    return (
+                                        <CardGift
+                                            data-aos="fade-zoom-in"
+                                            data-aos-once
+                                            key={value.id}
+                                            title={value.name}
+                                            point={value.point}
+                                            type={value.type}
+                                            imageSrc={value.image}
+                                        />
+                                    )
+                                })
+                                :
+                                <>
+                                    <AwardsNotFound>
+                                        No Awards Found
+                                    </AwardsNotFound>
+                                    <img 
+                                        src="https://cdn.discordapp.com/attachments/796711355876245534/1006062542868721784/2953962.jpg"
+                                        alt="not found awards"
+                                        width={250}
                                     />
-                                )
-                            })
+                                </>
                         }
                     </HomeContainer>
                 </>
@@ -80,4 +106,7 @@ const HomeContainer = styled.div`
     gap: 1em;
     margin-top: 8em;
     padding: 0 2.5em;
+`
+
+const AwardsNotFound = styled.h2`
 `

@@ -20,6 +20,6 @@ const OuterContainer = styled.div`
 const InnerContainer = styled.div`
     border: 1px solid #AAAAAA;
     width: 100%;
-    min-height: 650px;
+    min-height: 700px;
     max-width: 500px;
 `

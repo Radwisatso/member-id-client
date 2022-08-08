@@ -5,7 +5,7 @@ export const getAllAwards = (type = null, initialPoint) => {
     return new Promise((resolve, reject) => {
         const data = Axios.get(`/awards`, {
             params: {
-                awardType: type,
+                awardTypes: type,
                 initialPoint: initialPoint
             }
         })

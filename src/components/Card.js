@@ -30,7 +30,7 @@ function CardGift({
         <Box sx={{ minWidth: 275, margin: '1em' }} key={key} {...props}>
             <Card>
                 <CardTypeContainer>
-                    <CardType>
+                    <CardType type={type}>
                         {type}
                     </CardType>
                 </CardTypeContainer>
@@ -75,8 +75,26 @@ const CardTypeContainer = styled.div`
 
 const CardType = styled.div`
     position: absolute;
-    background-color: white;
-    color: black;
+    background-color: ${({ type }) => {
+        switch (type) {
+            case 'Vouchers':
+                return '#1D5BF5'
+            case 'Products':
+                return '#D06737'
+            default:
+                return 'white'
+        }
+    }};
+    color: ${({ type }) => {
+        switch (type) {
+            case 'Vouchers':
+                return 'white'
+            case 'Products':
+                return 'white'
+            default:
+                return 'black'
+        }
+    }};
     padding: 0.5em;
     margin: 1em;
     border-radius: 10px;
