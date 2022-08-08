@@ -291,6 +291,7 @@ const BurgerSubtitleMenu = styled.h4`
 const BurgerListMenu = styled.a`
     font-weight: 500;
     color: ${({ location, route }) => location.includes(route) ? 'black' : '#AAAAAA'};
+    cursor: pointer;
 `
 
 const OptionsContainer = styled.div`
